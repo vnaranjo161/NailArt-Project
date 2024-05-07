@@ -5,8 +5,8 @@ import generateHash from '../helpers/generateHash';
 import compareHash from '../helpers/compareHash';
 import decodingToken from '../middleware/decodingToken';
 import validatePassword from '../helpers/validatePassword';
-import cookieParser from 'cookie-parser';
 import generateToken from '../helpers/generateToken';
+import validateToken from '../middleware/validateToken';
 
 class UserService {
     
@@ -39,12 +39,10 @@ class UserService {
 
     static async changePassword(token: string, password: string, newPassword: string){
         try {
+            const isCorrectToken = validateToken(token)
             const decodedToken = await decodingToken.decodedToken(token);
             const email = decodedToken.email;
-            console.log(email);
-            
             const isPasswordValid = await validatePassword(email, password)
-            console.log(isPasswordValid);
             
             if (isPasswordValid) {
                 const newPasswordHash = await generateHash(newPassword);
@@ -55,6 +53,23 @@ class UserService {
             throw error.message;
         }
     }
+    
+    static async deleteUser(token: string, password: string, newPassword: string){
+        try {
+            const decodedToken = await decodingToken.decodedToken(token);
+            const email = decodedToken.email;
+            const isPasswordValid = await validatePassword(email, password)
+            
+            if (isPasswordValid) {
+
+            }
+            return null;
+        } catch (error: any) {
+            throw error.message;
+        }
+    }
+
+
 }
 
 export default UserService;

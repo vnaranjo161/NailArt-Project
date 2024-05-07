@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import UserService from "../../services/UserService";
-import { log } from "console";
 
 
 let changePassword = async (req: Request, res: Response) => {
@@ -11,7 +10,6 @@ let changePassword = async (req: Request, res: Response) => {
         }
         
         const token: any = req.cookies.token;
-               
         const changeResult = await UserService.changePassword(token, contrasena, contrasenaNueva)
     
         if (changeResult) {

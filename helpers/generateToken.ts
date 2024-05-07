@@ -9,7 +9,6 @@ function generateToken(email: string): string {
         const token = jwt.sign(payload, secret, { expiresIn: '30m' });
         return token;
     } catch (error) {
-        console.error('Error creating token:', error);
         throw new Error('Error creating token');
     }
 }

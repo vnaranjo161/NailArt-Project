@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-async function validateToken(accessToken: string | undefined): Promise<void> {
+let validateToken = async(accessToken: string | undefined): Promise<void> =>{
     const secret = process.env.SECRET ?? 'SECRET' 
     if (!accessToken) {
         throw new Error('Access denied');
@@ -15,4 +15,4 @@ async function validateToken(accessToken: string | undefined): Promise<void> {
     }
 }
 
-export default {validateToken };
+export default validateToken;

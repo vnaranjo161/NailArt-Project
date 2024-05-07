@@ -1,8 +1,7 @@
 import connection from '../config/configDB';
 import User from '../dto/UserDto';
 import validateEmail from '../helpers/validateEmail' 
-import generateHash from '../helpers/generateHash';
-import validatePassword from '../helpers/validatePassword';
+
 class UserRepository {
 
     static async auth(email: string){

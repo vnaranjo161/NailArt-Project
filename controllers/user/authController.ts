@@ -1,4 +1,3 @@
-const bcrypt = require("bcryptjs");
 import { Request, Response } from "express";
 import userService from "../../services/UserService";
 import Auth from "../../dto/AuthDto";
