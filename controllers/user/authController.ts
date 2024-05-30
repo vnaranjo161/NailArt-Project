@@ -7,10 +7,6 @@ let auth = async(req: Request, res: Response)=>{
         const {correo, contrasena} = req.body;
         const token = await userService.auth(new Auth(correo, contrasena))
         if (token) {
-            res.cookie('token', token, {
-                httpOnly: true
-            });
-
             return res.status(200).json({ 
                 status: 'Successful authentication',
                 AccesToken : token

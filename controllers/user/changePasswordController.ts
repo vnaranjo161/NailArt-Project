@@ -4,13 +4,12 @@ import UserService from "../../services/UserService";
 
 let changePassword = async (req: Request, res: Response) => {
     try {
-        const { contrasena, contrasenaNueva } = req.body;
-        if (!contrasena || !contrasenaNueva) {
+        const { contrasena, contrasenaNueva, email } = req.body;
+        if (!contrasena || !contrasenaNueva || !email) {
             return res.status(400).json({ message: "Both old and new passwords are required." });
         }
         
-        const token: any = req.cookies.token;
-        const changeResult = await UserService.changePassword(token, contrasena, contrasenaNueva)
+        const changeResult = await UserService.changePassword(contrasena, contrasenaNueva, email)
     
         if (changeResult) {
             return res.status(200).json({ message: "Password updated successfully." });

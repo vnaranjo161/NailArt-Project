@@ -13,8 +13,8 @@ class UserRepository {
     static async add(user: User){
         const sql = 'INSERT INTO usuario (identificacion, nombre, apellido, direccion, telefono, correo, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?)';
         try {
-            validateEmail(user.$correo)
-            const values = [user.$identificacion, user.$nombre, user.$apellido, user.$direccion, user.$telefono, user.$correo, user.$contrasena];
+            validateEmail(user.$email)
+            const values = [user.$identification, user.$firstName, user.$lastName, user.$address, user.$phoneNumber, user.$email, user.$password];
             return connection.execute(sql, values);
             
         } catch (error: any) {

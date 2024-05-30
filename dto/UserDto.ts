@@ -1,86 +1,81 @@
 class User {
-    private identificacion: string;
-    private nombre: string;
-    private apellido: string;
-    private direccion: string;
-    private telefono: string;
-    private correo: string;
-    private contrasena: string
+    private identification: string;
+    private firstName: string;
+    private lastName: string;
+    private address: string;
+    private phoneNumber: string;
+    private email: string;
+    private password: string;
+
     constructor(
-        identificacion: string, nombre: string,
-        apellido: string, direccion: string, 
-        telefono: string, correo: string,  contrasena: string
+        identification: string, firstName: string,
+        lastName: string, address: string,
+        phoneNumber: string, email: string, password: string
     ) {
-        this.identificacion = identificacion;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.contrasena = contrasena;
+        this.identification = identification;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
     }
 
-
-    
-	public get $identificacion(): string {
-		return this.identificacion;
-    }
-    
-	public get $nombre(): string {
-		return this.nombre;
-    }
-	
-	public get $apellido(): string {
-		return this.apellido;
-	}
-
-	public get $direccion(): string {
-		return this.direccion;
-    }
-	
-	public get $telefono(): string {
-		return this.telefono;
+    public get $identification(): string {
+        return this.identification;
     }
 
-	public get $correo(): string {
-		return this.correo;
-	}
+    public get $firstName(): string {
+        return this.firstName;
+    }
 
-    public get $contrasena(): string {
-		return this.contrasena;
-	}
+    public get $lastName(): string {
+        return this.lastName;
+    }
 
-	public set $identificacion(value: string) {
-		this.identificacion = value;
-	}
+    public get $address(): string {
+        return this.address;
+    }
 
+    public get $phoneNumber(): string {
+        return this.phoneNumber;
+    }
 
-	public set $nombre(value: string) {
-		this.nombre = value;
-	}
+    public get $email(): string {
+        return this.email;
+    }
 
-	public set $apellido(value: string) {
-		this.apellido = value;
-	}
+    public get $password(): string {
+        return this.password;
+    }
 
-	public set $direccion(value: string) {
-		this.direccion = value;
-	}
+    public set $identification(value: string) {
+        this.identification = value;
+    }
 
+    public set $firstName(value: string) {
+        this.firstName = value;
+    }
 
-	public set $telefono(value: string) {
-		this.telefono = value;
-	}
+    public set $lastName(value: string) {
+        this.lastName = value;
+    }
 
-	public set $correo(value: string) {
-		this.correo = value;
-	}
-    
-    public set $contrasena(value: string) {
-        this.contrasena = value;
-	}
+    public set $address(value: string) {
+        this.address = value;
+    }
 
-    
+    public set $phoneNumber(value: string) {
+        this.phoneNumber = value;
+    }
+
+    public set $email(value: string) {
+        this.email = value;
+    }
+
+    public set $password(value: string) {
+        this.password = value;
+    }
 }
 
 export default User;

@@ -6,14 +6,13 @@ import compareHash from '../helpers/compareHash';
 import decodingToken from '../middleware/decodingToken';
 import validatePassword from '../helpers/validatePassword';
 import generateToken from '../helpers/generateToken';
-import validateToken from '../middleware/validateToken';
 
 class UserService {
     
     static async register(user: User) {
         try {
-            const passwordHash = await generateHash(user.$contrasena);
-            user.$contrasena = passwordHash;
+            const passwordHash = await generateHash(user.$password);
+            user.$password = passwordHash;
             return await UserRepository.add(user);
         } catch (error: any) {
             throw new Error(error.message);
@@ -22,11 +21,11 @@ class UserService {
 
     static async auth(auth: Auth){
         try {
-            const result: any = await UserRepository.auth(auth.$correo)
+            const result: any = await UserRepository.auth(auth.$email)
             if (result[0].length > 0) {
-                const isPasswordValid= await compareHash(auth.$contrasena, result[0][0].contrasena);
+                const isPasswordValid= await compareHash(auth.$password, result[0][0].contrasena);
                 if (isPasswordValid) {
-                    const token = generateToken(auth.$correo)
+                    const token = generateToken({email: auth.$email}, process.env.SECRET, 60)
                     return token;
                 }  
             }
@@ -37,13 +36,9 @@ class UserService {
     }
 
 
-    static async changePassword(token: string, password: string, newPassword: string){
+    static async changePassword(password: string, newPassword: string, email: string){
         try {
-            const isCorrectToken = validateToken(token)
-            const decodedToken = await decodingToken.decodedToken(token);
-            const email = decodedToken.email;
             const isPasswordValid = await validatePassword(email, password)
-            
             if (isPasswordValid) {
                 const newPasswordHash = await generateHash(newPassword);
                 return await UserRepository.changePassword(newPasswordHash, email)
@@ -53,6 +48,7 @@ class UserService {
             throw error.message;
         }
     }
+    
     
     static async deleteUser(token: string, password: string, newPassword: string){
         try {

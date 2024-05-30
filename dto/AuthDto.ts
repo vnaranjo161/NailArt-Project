@@ -1,31 +1,33 @@
-class Auth{
-    private correo: string;
-    private contrasena: string
+class Auth {
+    private email: string;
+    private password: string;
+
     constructor(
-        correo: string,  contrasena: string
+        email: string, password: string
     ) {
-        this.correo = correo;
-        this.contrasena = contrasena;
+        this.email = email;
+        this.password = password;
     }
-    
 
-	public get $correo(): string {
-		return this.correo;
-	}
+    // Getter for email
+    public get $email(): string {
+        return this.email;
+    }
 
-    public get $contrasena(): string {
-		return this.contrasena;
-	}
+    // Getter for password
+    public get $password(): string {
+        return this.password;
+    }
 
-	public set $correo(value: string) {
-		this.correo = value;
-	}
+    // Setter for email
+    public set $email(value: string) {
+        this.email = value;
+    }
 
-	public set $contrasena(value: string) {
-		this.contrasena = value;
-	}
-
-
+    // Setter for password
+    public set $password(value: string) {
+        this.password = value;
+    }
 }
 
 export default Auth;
